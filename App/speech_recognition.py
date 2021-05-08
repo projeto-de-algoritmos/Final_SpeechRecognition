@@ -5,11 +5,11 @@ from numpy import hamming
 words = {}
 
 def register_new_word(word: str, audio, samplerate: int):
-'''
+    '''
     Inserts a new word into dataset
     Returns False if word already exists or if couldn't insert that word
     Return True in success
-'''
+    '''
     success = True
     try:
         if word not in words:
@@ -21,12 +21,12 @@ def register_new_word(word: str, audio, samplerate: int):
     
     return success
 
-def query_word(audio, samplerate: int)
-'''
+def query_word(audio, samplerate: int):
+    '''
     Returns a sorted list of tuple(int, str) containing the distance between "audio"
     and every word present in dataset.
     First element from the tuple is the distance and the second one is the word compared.
-'''
+    '''
     unknown_word = mfcc(audio, samplerate, winfunc=hamming)
 
     comparison_list = []
