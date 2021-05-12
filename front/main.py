@@ -2,6 +2,7 @@ import sys
 from PySide6 import QtCore, QtWidgets, QtGui
 from PySide6.QtWidgets import QInputDialog, QLineEdit, QProgressBar, QLabel
 
+
 class RecordWidget(QtWidgets.QWidget):
 
     def __init__(self):
@@ -30,6 +31,9 @@ class RecordWidget(QtWidgets.QWidget):
 
         button = QtWidgets.QPushButton('Reconhecimento')
         button.setGeometry(250, 20, 50, 20)
+        button.clicked.connect(self.identify_clicked)
+
+        self.identify_button = button
         layout.addWidget(button)
 
         label = QtWidgets.QLabel('...')
@@ -39,6 +43,17 @@ class RecordWidget(QtWidgets.QWidget):
         box.setLayout(layout)
 
         return box
+
+    def record_clicked(self):
+
+        filename = self.line.text()
+        print(filename)
+        #self.record_sig.emit(filename)
+
+
+    def identify_clicked(self):
+        print('Identificando')
+        pass
 
     def recordBox(self):
 
@@ -51,14 +66,24 @@ class RecordWidget(QtWidgets.QWidget):
         line.setGeometry(20, 20, 200, 20)
         layout.addWidget(line)
 
+        self.line = line
+
         # add button
         record_button = QtWidgets.QPushButton('Record', self)
         record_button.setGeometry(250, 20, 50, 20)
+
+        record_button.clicked.connect(self.record_clicked)
         layout.addWidget(record_button)
 
         box.setLayout(layout)
 
         return box
+
+    def record_action(self):
+        """
+        Record audio
+        """
+
 
 
 class RecordedTab(QtWidgets.QWidget):
