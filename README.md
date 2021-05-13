@@ -24,9 +24,9 @@ O reconhecimento de fala é feito através da comparação de um áudio, que nã
 
 ## Screenshots
 
-[!screen1](images/screen1.png)
-[!screen2](images/screen2.png)
-[!screen3](images/screen3.png)
+![screen1](images/screen1.png)
+![screen2](images/screen2.png)
+![screen3](images/screen3.png)
 
 ## Instalação 
 **Linguagem**: Python 3<br>
