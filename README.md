@@ -23,15 +23,33 @@ O reconhecimento de fala é feito através da comparação de um áudio, que nã
  Utilizando o algoritmo [_Dynamic Time Warping_](https://pt.wikipedia.org/wiki/Dynamic_time_warping) (DTW) que utiliza de técnicas de programação dinâmica para computar um melhor _match_ de duas sequências, conseguimos descobrir qual é a palavra mais próxima do áudio fornecido para consulta. Nesta API, em específico, estaremos utilizando uma versão aproximada do DTW chamada _Fast DTW_ que possui complexidade linear, mas que para os nosso proposito se mostrou extremamente eficiente.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+
+[!screen1](images/screen1.png)
+[!screen2](images/screen2.png)
+[!screen3](images/screen3.png)
 
 ## Instalação 
 **Linguagem**: Python 3<br>
 **Framework**: [Qt](https://doc.qt.io/qtforpython/)<br>
+
+É altamente aconselhavel que você utilize uma [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html) e 
+instale as dependências neste ambiente.
+
+Com a virtualenv ligada instale as dependências com o comando abaixo:
+
+```bash
+pip3 install -r requirements.txt
+```
+
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+
+No ambiente com os pacotes instalados execute o comando no *root* do projeto:
+
+```bash
+python3 main.py
+```
 
 ## Outros 
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
