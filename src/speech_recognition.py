@@ -30,8 +30,8 @@ def query_word(audio, samplerate: int):
     unknown_word = mfcc(audio, samplerate, winfunc=hamming)
 
     comparison_list = []
-    for word in words:
-        current_comparison, _ = fastdtw(unknown_word, word)
+    for word, data in words.items():
+        current_comparison, _ = fastdtw(unknown_word, data)
         comparison_list.append((current_comparison, word))
 
     return sorted(comparison_list)
