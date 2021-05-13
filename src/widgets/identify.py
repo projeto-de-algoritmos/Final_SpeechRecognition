@@ -60,13 +60,17 @@ class IdentifyWidget(QtWidgets.QWidget):
 
         logger.info('Trying to identify audio')
 
-        # TODO(felipe) write error handling
 
-        data = record()
+        if len(words) >= 3:
 
-        words = query_word(data, SAMPLE_RATE)
+            data = record()
+            candidate_words = query_word(data, SAMPLE_RATE)
+            logger.debug(f'Ranking words')
 
-        self.label1.setText(f'1ª) {words[0][1]}')
-        self.label2.setText(f'2ª) {words[1][1]}')
-        self.label3.setText(f'3ª) {words[2][1]}')
+            self.label1.setText(f'1ª) {candidate_words[0][1]}')
+            self.label2.setText(f'2ª) {candidate_words[1][1]}')
+            self.label3.setText(f'3ª) {candidate_words[2][1]}')
+
+        else:
+            logger.warning('Tried to identify without recording 3 audios')
 
