@@ -11,7 +11,7 @@
 ## Sobre 
 
 ### Aspectos gerais
-Este projeto implementa uma API cujo proposito é o reconhecimento de fala. A API é criada em [_Flask_](https://flask.palletsprojects.com/en/1.1.x/) e é munida de _endpoints_ para registro de novas palavras e consultas sobre o _dataset_ de palavras. O usuário da API cadastra uma nova palavra através do envio de sua _string_ e seu áudio correspondente. O usuário da API pode então enviar um áudio de **uma palavra** para o _endpoint_ de consulta e receber de volta a sua _string_ correspondente. Para que uma palavra seja reconhecida, a mesma deve ser previamente cadastrada.
+Este projeto implementa um aplicativo _desktop_ cujo proposito é o reconhecimento de fala. O aplicativo é criado em [_Python_](https://www.python.org/) e é munido de _funcionalidades_ para registro de novas palavras e consultas sobre o _dataset_ de palavras. O usuário do aplicativo cadastra uma nova palavra através do envio de sua _string_ e seu áudio correspondente. O usuário do aplicativo pode então enviar um áudio de **uma palavra** para o campo de consulta e receber de volta a sua _string_ correspondente. Para que uma palavra seja reconhecida, a mesma deve ser previamente cadastrada.
 
 ### Reconhecimento de fala
 O reconhecimento de fala é feito através da comparação de um áudio, que não se sabe _a priori_ a que palavra se refere, com todas as outras palavras cadastradas anteriormente, e retornando assim aquela cuja diferença for a menor. A rotina de comparação de áudio é composta de duas etapas:
@@ -27,7 +27,7 @@ Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação 
 **Linguagem**: Python 3<br>
-**Framework**: Flask<br>
+**Framework**: [Qt](https://doc.qt.io/qtforpython/)<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
 ## Uso 
