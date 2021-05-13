@@ -1,6 +1,22 @@
+import sounddevice as sd
 import sys
+
 from PySide6 import QtCore, QtWidgets, QtGui
 from PySide6.QtWidgets import QInputDialog, QLineEdit, QProgressBar, QLabel
+from io import BytesIO
+from scipy.io.wavfile import write
+from speech_recognition import register_new_word, query_word, words
+from time import sleep
+
+SAMPLE_RATE= 18000  # Sample rate
+SECONDS = 3  # Duration of recording
+
+def record():
+
+    myrecording = sd.rec(int(SECONDS*SAMPLE_RATE), samplerate=SAMPLE_RATE, channels=1)
+    sd.wait()  # Wait until recording is finished
+
+    return myrecording
 
 
 class RecordWidget(QtWidgets.QWidget):
@@ -13,13 +29,6 @@ class RecordWidget(QtWidgets.QWidget):
         self.layout.addWidget(self.recordBox())
 
         self.layout.addWidget(self.identifyBox())
-
-        # progress bar 
-        self.pbar = QProgressBar(self)
-        self.pbar.setGeometry(20, 50, 275, 20)
-        self.pbar.setValue(0)
-        self.layout.addWidget(self.pbar)
-
 
         self.setLayout(self.layout)
 
@@ -36,9 +45,20 @@ class RecordWidget(QtWidgets.QWidget):
         self.identify_button = button
         layout.addWidget(button)
 
-        label = QtWidgets.QLabel('...')
+        label = QtWidgets.QLabel('1ª')
         label.setAlignment(QtCore.Qt.AlignCenter)
         layout.addWidget(label)
+
+
+        label1 = QtWidgets.QLabel('2ª')
+        label1.setAlignment(QtCore.Qt.AlignCenter)
+ 
+        label2 = QtWidgets.QLabel('3ª')
+        label2.setAlignment(QtCore.Qt.AlignCenter)
+
+        layout.addWidget(label1)
+        layout.addWidget(label2)
+ 
 
         box.setLayout(layout)
 
@@ -46,9 +66,19 @@ class RecordWidget(QtWidgets.QWidget):
 
     def record_clicked(self):
 
-        filename = self.line.text()
-        print(filename)
+        self.record_button.setText('Gravando')
+        self.record_button.repaint()
+
+        sleep(1)
+        word = self.line.text()
+
+        data = record()
+        
+        register_new_word(word, data, SAMPLE_RATE)
         #self.record_sig.emit(filename)
+
+        print(words)
+        self.record_button.setText('Record')
 
 
     def identify_clicked(self):
@@ -73,6 +103,8 @@ class RecordWidget(QtWidgets.QWidget):
         record_button.setGeometry(250, 20, 50, 20)
 
         record_button.clicked.connect(self.record_clicked)
+
+        self.record_button = record_button
         layout.addWidget(record_button)
 
         box.setLayout(layout)
