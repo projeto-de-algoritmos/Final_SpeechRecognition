@@ -1,4 +1,5 @@
 import sounddevice as sd
+import logging
 
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtWidgets import QInputDialog, QLineEdit, QProgressBar, QLabel, QPushButton
@@ -6,6 +7,8 @@ from src.constants import SAMPLE_RATE
 from src.speech_recognition import register_new_word
 from src.utils import record
 from src.widgets import IdentifyWidget
+
+logger = logging.getLogger(__name__)
 
 
 class RecordWidget(QtWidgets.QWidget):
@@ -23,6 +26,8 @@ class RecordWidget(QtWidgets.QWidget):
 
     def record_clicked(self):
 
+        logger.info('Recording audio')
+
         self.record_button.setText('Gravando')
         self.record_button.repaint()
 
@@ -34,15 +39,16 @@ class RecordWidget(QtWidgets.QWidget):
         
         self.record_button.setText('Gravar')
 
+        logger.info('Record finished')
+
     def save_clicked(self):
 
-        print("salvando")
+        logger.info('Saving audio')
 
         if self.word_data :
             word, data = self.word_data
 
-            print(word)
-
+            logger.debug(f'Word saved: {word}')
 
             register_new_word(word, data, SAMPLE_RATE)
 
@@ -50,7 +56,11 @@ class RecordWidget(QtWidgets.QWidget):
 
     def play_clicked(self):
 
+        logger.info('Trying to play a audio')
+
         if self.word_data:
+
+            logger.debug('Playing')
 
             sd.play(self.word_data[1], SAMPLE_RATE)
 

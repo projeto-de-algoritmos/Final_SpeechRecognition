@@ -1,8 +1,12 @@
+import logging
+
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtWidgets import QInputDialog, QLineEdit, QProgressBar, QLabel, QPushButton
 from src.constants import SAMPLE_RATE
 from src.speech_recognition import query_word, words
 from src.utils import record
+
+logger = logging.getLogger(__name__)
 
 
 class IdentifyWidget(QtWidgets.QWidget):
@@ -53,7 +57,8 @@ class IdentifyWidget(QtWidgets.QWidget):
         return box
 
     def identify_clicked(self):
-        print('Identificando')
+
+        logger.info('Trying to identify audio')
 
         # TODO(felipe) write error handling
 
